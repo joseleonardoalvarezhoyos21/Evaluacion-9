@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Test de Evaluación</title>
+
+  <!-- ✅ SDK de EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("X-TUH8Y3rl7B_rMuE");
+    })();
+  </script>
+
+  <style>
+    body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background: linear-gradient(135deg, #6dd5ed, #2193b0); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    form { background: #fff; padding: 25px; border-radius: 15px; max-width: 600px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: fadeIn 1s ease-in-out; }
+    h2 { text-align: center; margin-bottom: 20px; color: #2193b0; font-size: 1.6rem; }
+    label { font-weight: bold; display: block; margin-top: 15px; color: #333; font-size: 0.95rem; }
+    input[type="text"], select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; transition: 0.3s; }
+    input[type="text"]:focus, select:focus { border-color: #2193b0; outline: none; box-shadow: 0 0 8px rgba(33, 147, 176, 0.4); }
+    .question { margin-top: 20px; padding: 15px; border: 1px solid #eee; border-radius: 10px; background: #f9f9f9; transition: transform 0.3s ease; font-size: 0.95rem; }
+    .question:hover { transform: scale(1.02); }
+    input[type="radio"] { margin-right: 8px; }
+    button { margin-top: 25px; width: 100%; padding: 14px; border: none; border-radius: 10px; background: linear-gradient(135deg, #2193b0, #6dd5ed); color: #fff; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+    button:hover { background: linear-gradient(135deg, #176582, #34b1cb); transform: translateY(-2px); }
+    button:active { transform: translateY(0); }
+    #timer { position: fixed; top: 15px; left: 15px; background: rgba(33, 147, 176, 0.9); padding: 10px 16px; border-radius: 12px; font-weight: bold; font-size: 16px; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); text-shadow: 1px 1px 3px rgba(0,0,0,0.4); z-index: 1000; }
+    .hidden { display: none; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+   
+   
+   #user_name, #user_name2 {
+  display: block;     /* Para que respete el margin auto */
+  margin: 0 auto;     /* Centra horizontalmente */
+  width: 96%;         /* Ejemplo: que ocupe solo el 60% del contenedor */
+}
+
+  </style>
+</head>
+<body>
+
+  <form id="quiz-form">
+    <h2>📘 Evaluación de conocimientos</h2>
+
+    <label for="user_name">👤 Nombre del estudiante 1:</label>
+    <input type="text" id="user_name" name="user_name" required />
+
+    <label for="user_name2">👤 Nombre del estudiante 2:</label>
+    <input type="text" id="user_name2" name="user_name2" required />
+
+    <label for="grado">🏫 Grado:</label>
+    <select id="grado" name="grado" required>
+      <option value="" disabled selected>Selecciona un grado</option>
+      <option value="7">7°</option>
+      <option value="9-1">9-1</option>
+      <option value="9-2">9-2</option>
+      <option value="10">10°</option>
+      <option value="11">11°</option>
+    </select>
+
+    <!-- Preguntas para 7° -->
+    <div id="questions-9-1" class="question hidden">
+
+    <p>1️⃣ ¿Qué son los bioelementos y por qué son importantes para los seres vivos?</p>
+    <label><input type="radio" name="q1" value="0"> Son compuestos químicos que se encuentran en la atmósfera y sólo sirven para la respiración de los seres vivos.</label><br>
+    <label><input type="radio" name="q1" value="1"> Son elementos químicos esenciales que forman parte de las estructuras y funciones de los seres vivos, siendo fundamentales para la vida.</label><br>
+    <label><input type="radio" name="q1" value="0"> Son organismos microscópicos que ayudan a descomponer la materia orgánica en el ambiente.</label><br>
+
+    <p>2️⃣ ¿Cuáles son los seis bioelementos primarios?</p>
+    <label><input type="radio" name="q2" value="0"> Oxígeno, Carbono, Calcio, Nitrógeno, Sodio y Potasio</label><br>
+    <label><input type="radio" name="q2" value="0"> Hidrógeno, Calcio, Magnesio, Carbono, Azufre y Fósforo</label><br>
+    <label><input type="radio" name="q2" value="1"> Carbono, Hidrógeno, Oxígeno, Nitrógeno, Fósforo y Azufre</label><br>
+
+    <p>3️⃣ Qué significa el término “biomolecular</p>
+    <label><input type="radio" name="q3" value="1"> Relacionado con las moléculas que componen los seres vivos y participan en procesos biológicos.</label><br>
+    <label><input type="radio" name="q3" value="0"> Describe organismos microscópicos que viven en ambientes extremos.</label><br>
+    <label><input type="radio" name="q3" value="0"> Relacionado con moléculas artificiales usadas en laboratorios.</label><br>
+    <label><input type="radio" name="q3" value="0"> Se refiere a cualquier sustancia presente en el agua.</label><br>
+
+    <p>4️⃣ ¿Cuáles de las siguientes son biomoléculas fundamentales en los seres vivos?</p>
+<label><input type="radio" name="q4" value="1"> Carbohidratos, lípidos y proteínas</label><br>
+<label><input type="radio" name="q4" value="0"> Hierro, calcio y sodio</label><br>
+<label><input type="radio" name="q4" value="0"> Ácido clorhídrico, sales y gases</label><br>
+<label><input type="radio" name="q4" value="0"> Agua, oxígeno y dióxido de carbono</label><br>
+
+<p>5️⃣ ¿Cuál es la función principal que cumplen los carbohidratos en el cuerpo humano?</p>
+<label><input type="radio" name="q5" value="0"> Transportar oxígeno a las células del cuerpo.</label><br>
+<label><input type="radio" name="q5" value="0"> Dañar tejidos del cuerpo.</label><br>
+<label><input type="radio" name="q5" value="0"> Regular el equilibrio hídrico y la presión sanguínea.</label><br>
+<label><input type="radio" name="q5" value="1"> Proporcionar energía rápida y almacenada para las células.</label><br>
+
+<p>6️⃣ Cuál es la diferencia principal entre un carbohidrato simple y uno complejo?</p>
+<label><input type="radio" name="q6" value="1"> Los carbohidratos simples se digieren y absorben rápidamente, mientras que los complejos se digieren más lentamente y proporcionan energía prolongada.</label><br>
+<label><input type="radio" name="q6" value="0"> Los carbohidratos simples no aportan energía, pero los complejos sí.</label><br>
+<label><input type="radio" name="q6" value="0"> Los carbohidratos simples contienen más proteínas que los complejos.</label><br>
+<label><input type="radio" name="q6" value="0"> Los carbohidratos simples sólo se encuentran en vegetales, y los complejos sólo en animales.</label><br>
+
+<p>7️⃣ ¿Qué son las proteínas y por qué son importantes para el cuerpo humano?</p>
+<label><input type="radio" name="q7" value="0"> Son grasas que almacenan energía y no tienen función estructural en el cuerpo.</label><br>
+<label><input type="radio" name="q7" value="0"> Son azúcares simples que proveen energía inmediata a las células.</label><br>
+<label><input type="radio" name="q7" value="1"> Son macromoléculas formadas por aminoácidos que cumplen funciones estructurales, enzimáticas y de transporte, fundamentales para el crecimiento y reparación de tejidos.</label><br>
+<label><input type="radio" name="q7" value="0"> Son minerales esenciales para la formación de huesos y dientes.</label><br>
+
+<p>8️⃣ ¿Cuáles de las siguientes son funciones que cumplen las proteínas en el cuerpo humano?</p>
+<label><input type="radio" name="q8" value="0"> Hacer que el cabello crezca de color azul y cambiar el tamaño de los ojos</label><br>
+<label><input type="radio" name="q8" value="0"> Convertir el agua en gasolina y hacer que el cuerpo flote en el aire.</label><br>
+<label><input type="radio" name="q8" value="0"> Producir electricidad para cargar el celular y hacer que la piel brille en la oscuridad.</label><br>
+<label><input type="radio" name="q8" value="1"> Formar estructuras como músculos, actuar como enzimas y transportar moléculas en la sangre.</label><br>
+
+<p>9️⃣ ¿Cuáles son dos diferencias entre las vitaminas liposolubles y las hidrosolubles?</p>
+<label><input type="radio" name="q9" value="1"> Las liposolubles se disuelven en grasas y se almacenan en el cuerpo; las hidrosolubles se disuelven en agua y se eliminan fácilmente</label><br>
+<label><input type="radio" name="q9" value="0"> Las liposolubles se disuelven en agua y las hidrosolubles en grasas.</label><br>
+<label><input type="radio" name="q9" value="0"> Las liposolubles se eliminan rápidamente por la orina y las hidrosolubles se almacenan en el hígado.</label><br>
+<label><input type="radio" name="q9" value="0"> Las liposolubles son minerales y las hidrosolubles son proteínas.</label><br>
+
+<p>🔟 ¿Regalo del día, que animal le gusta?</p>
+<label><input type="radio" name="q10" value="1"> Perro</label><br>
+<label><input type="radio" name="q10" value="1"> Gato</label><br>
+<label><input type="radio" name="q10" value="1"> Caballo</label><br>
+<label><input type="radio" name="q10" value="1"> León</label><br>
+
+
+
+
+
+  </div>
+
+    <!-- Otros grados -->
+    <div id="questions-7" class="question hidden"><p>⏳ En este momento no es hora de su evaluación</p></div>
+    <div id="questions-9-2" class="question hidden"><p>⏳ En este momento no es hora de su evaluación</p></div>
+    <div id="questions-10" class="question hidden"><p>⏳ En este momento no es hora de su evaluación</p></div>
+    <div id="questions-11" class="question hidden"><p>⏳ En este momento no es hora de su evaluación</p></div>
+
+    <button type="submit" id="submit-btn">🚀 Enviar</button>
+  </form>
+
+  <p id="timer">⏳ Tiempo: 00:00</p>
+
+<script>
+  let startTime = null;
+  let timerInterval = null;
+  let cambioReportado = false;
+
+  function startTimer() {
+    startTime = new Date();
+    const timerDisplay = document.getElementById('timer');
+    timerInterval = setInterval(() => {
+      const now = new Date();
+      const elapsed = Math.floor((now - startTime) / 1000);
+      const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+      const seconds = String(elapsed % 60).padStart(2, '0');
+      timerDisplay.textContent = `⏳ Tiempo: ${minutes}:${seconds}`;
+    }, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(timerInterval);
+    const now = new Date();
+    const durationInSeconds = Math.floor((now - startTime) / 1000);
+    const minutes = Math.floor(durationInSeconds / 60);
+    const seconds = durationInSeconds % 60;
+    return `${minutes} min ${seconds} s`;
+  }
+
+  if (!startTime) startTimer();
+
+  const gradoSelect = document.getElementById('grado');
+  const questions7 = document.getElementById('questions-7');
+  const questions91 = document.getElementById('questions-9-1');
+  const questions92 = document.getElementById('questions-9-2'); 
+  const question10 = document.getElementById('questions-10');
+  const question11 = document.getElementById('questions-11');
+
+  gradoSelect.addEventListener('change', () => {
+    const userName = document.getElementById("user_name").value.trim();
+    const userName2 = document.getElementById("user_name2").value.trim();
+
+    if (!userName || !userName2) {
+      alert("⚠️ Debes ingresar los dos nombres ANTES de seleccionar el grado.");
+      gradoSelect.value = "";
+      return;
+    }
+
+    [questions7, questions91, questions92, question10, question11].forEach(q => q.classList.add('hidden'));
+    const grado = gradoSelect.value;
+    if (grado === '7') questions7.classList.remove('hidden');
+    else if (grado === '9-1') questions91.classList.remove('hidden');
+    else if (grado === '9-2') questions92.classList.remove('hidden');
+    else if (grado === '10') question10.classList.remove('hidden');
+    else if (grado === '11') question11.classList.remove('hidden');
+  });
+
+  // 🚨 Detectar cambio de pestaña y enviar correo SOLO UNA VEZ
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && !cambioReportado) {
+      const userName = document.getElementById("user_name").value.trim();
+      const userName2 = document.getElementById("user_name2").value.trim();
+      const grado = document.getElementById("grado").value;
+      const tiempo = stopTimer();
+
+      if (userName && userName2 && grado) {
+        cambioReportado = true;
+        alert("⚠️ Te saliste de la evaluación. Esto será reportado.");
+
+        const mensajeFinal = "El estudiante cambió de pestaña durante la evaluación ⚠️";
+
+        emailjs.send("service_qvdv1el", "template_rcnudaa", {
+          user_name: userName,
+          user_name2: userName2,
+          score: "N/A",
+          duration: tiempo,
+          grado: grado,
+          mensaje: mensajeFinal
+        }).then(res => {
+          console.log("📩 Aviso enviado ✔️", res.status);
+        }).catch(err => {
+          console.error("❌ Error al enviar el correo", err);
+        });
+      }
+    }
+  });
+
+  // 🚀 Enviar resultados al hacer submit (UNIFICADO)
+  document.getElementById("quiz-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const userName = document.getElementById("user_name").value.trim();
+    const userName2 = document.getElementById("user_name2").value.trim();
+    const grado = document.getElementById("grado").value;
+    const tiempo = stopTimer();
+
+    // ✅ Contar respuestas correctas y total
+    let correct = 0;
+    let preguntas = document.querySelectorAll('.question input[type="radio"]:checked');
+    let total = document.querySelectorAll('.question:not(.hidden) p').length; 
+
+    preguntas.forEach((respuesta) => {
+      if (respuesta.value === "1") {
+        correct++;
+      }
+    });
+
+    const mensajeFinal = "El estudiante terminó y envió su evaluación ✔️";
+
+    emailjs.send("service_qvdv1el", "template_rcnudaa", {
+      user_name: userName,
+      user_name2: userName2,
+      score: `${correct}/${total}`,
+      duration: tiempo,
+      grado: grado,
+      mensaje: mensajeFinal
+    }).then(function(response) {
+      alert(`✅ Respuestas enviadas correctamente.\nTu resultado es: ${correct}/${total}`);
+      console.log("📩 Correo enviado ✔️", response.status, response.text);
+    }, function(error) {
+      alert("❌ Error al enviar respuestas");
+      console.error("❌ Error al enviar el correo", error);
+    });
+  });
+</script>
+
+
+
+
+
+</body>
+</html>
